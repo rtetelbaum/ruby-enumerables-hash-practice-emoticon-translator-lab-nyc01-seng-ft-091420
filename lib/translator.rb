@@ -23,3 +23,12 @@ def get_english_meaning(yaml_file, emoticon)
   english_meaning = emo_conv.keys.find { |key| emo_conv[key][:japanese] == emoticon }
   english_meaning ? english_meaning : "Sorry, that emoticon was not found"
 end
+
+def get_japanese_emoticon(yaml_file, emoticon)
+  load_library(yaml_file).each do |key, value|
+    if key[:english] == emoticon
+      return key[:japanese]
+    end
+  end
+  return "Sorry, that emoticon was not found"
+end
